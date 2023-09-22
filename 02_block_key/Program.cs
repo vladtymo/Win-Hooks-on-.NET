@@ -16,6 +16,7 @@ namespace _02_block_key
         private const int WM_MOUSEMOVE = 0x0200;
         private const int WM_KEYDOWN = 0x0100;
 
+        private static IntPtr zBlockHook = IntPtr.Zero;
         private static IntPtr keyHook = IntPtr.Zero;
         private static IntPtr mouseHook = IntPtr.Zero;
 
@@ -23,18 +24,23 @@ namespace _02_block_key
 
         public static void Main()
         {
-            Console.WriteLine("S - block\n" +
-                              "Y - change to 'HELLO'\n" +
-                              "Win - block\n");
-            keyHook = SetHook(KeyboardHookCallback, WH_KEYBOARD_LL);
+            Console.WriteLine("Z key is blocked! Glory to Ukraine!");
 
-            //Console.WriteLine("Mouse move: X < 400 - block\n");
-            //mouseHook = SetHook(MouseHookCallback, WH_MOUSE_LL);
+            zBlockHook = SetHook(BlockZHookCallback, WH_KEYBOARD_LL);
+
+            //Console.WriteLine("S - block\n" +
+            //                  "Y - change to 'HELLO'\n" +
+            //                  "Win - block\n");
+            //keyHook = SetHook(KeyboardHookCallback, WH_KEYBOARD_LL);
+
+            Console.WriteLine("Mouse move: X < 400 - block\n");
+            mouseHook = SetHook(MouseHookCallback, WH_MOUSE_LL);
 
             Application.Run();
 
-            //UnhookWindowsHookEx(mouseHook);ttutiufvc
-            UnhookWindowsHookEx(keyHook);
+            UnhookWindowsHookEx(zBlockHook);
+            UnhookWindowsHookEx(mouseHook);
+            //UnhookWindowsHookEx(keyHook);
         }
 
         private static IntPtr SetHook(HookProc proc, int hookId)
@@ -46,6 +52,30 @@ namespace _02_block_key
             }
         }
 
+        private static IntPtr BlockZHookCallback(int nCode, IntPtr wParam, IntPtr lParam)
+        {
+            if (nCode < 0)
+                return CallNextHookEx(zBlockHook, nCode, wParam, lParam);
+
+            if (wParam == (IntPtr)WM_KEYDOWN)
+            {
+                int vkCode = Marshal.ReadInt32(lParam);
+                Keys key = (Keys)vkCode;
+
+                if (key == Keys.Z)
+                {
+                    Console.WriteLine("Block Z");
+
+                    keyboard.Send(Keyboard.ScanCodeShort.KEY_J);
+                    keyboard.Send(Keyboard.ScanCodeShort.KEY_O);
+                    keyboard.Send(Keyboard.ScanCodeShort.KEY_K);
+                    keyboard.Send(Keyboard.ScanCodeShort.KEY_E);
+
+                    return (IntPtr)1;
+                }
+            }
+            return CallNextHookEx(mouseHook, nCode, wParam, lParam);
+        }
         private static IntPtr MouseHookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
             if (nCode < 0)
