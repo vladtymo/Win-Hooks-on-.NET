@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.779
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01_hooks", "01_hooks\01_hooks.csproj", "{D50A7768-1B99-4010-8211-34C4CDDB27EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02_block_key", "02_block_key\02_block_key.csproj", "{5B019AE8-9B59-46EE-B39C-9563D995BCBB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D50A7768-1B99-4010-8211-34C4CDDB27EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D50A7768-1B99-4010-8211-34C4CDDB27EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D50A7768-1B99-4010-8211-34C4CDDB27EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D50A7768-1B99-4010-8211-34C4CDDB27EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B019AE8-9B59-46EE-B39C-9563D995BCBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B019AE8-9B59-46EE-B39C-9563D995BCBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B019AE8-9B59-46EE-B39C-9563D995BCBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B019AE8-9B59-46EE-B39C-9563D995BCBB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {50A343B3-7A46-4F5C-B5D7-862F58858EFD}
+	EndGlobalSection
+EndGlobal
